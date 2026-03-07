@@ -170,9 +170,13 @@ export default function Navigation() {
               </button>
             </div>
             <div className="flex flex-col p-6 gap-2">
-              <div className="mb-4 px-4">
-                <LanguageSwitcher />
-              </div>
+{/* Mobile Language Switcher */}
+          <div className="mb-6 pb-4 border-b border-gray-100">
+            <p className="text-xs text-gray-400 uppercase tracking-wide mb-3 px-4">Language</p>
+            <div className="px-4">
+              <LanguageSwitcher />
+            </div>
+          </div>
               {navLinks.map((link, index) => (
                 <Link
                   key={link.key}
