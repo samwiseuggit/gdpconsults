@@ -29,12 +29,15 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 # Copy nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy API server files
+# Copy API server files and its own package.json
 COPY api/ ./api/
-COPY package.json ./
 
-# Install production dependencies for API server
-RUN npm install --legacy-peer-deps --omit=dev
+# Install API server dependencies from api/package.json
+WORKDIR /app/api
+RUN npm install --omit=dev
+
+# Return to app directory
+WORKDIR /app
 
 # Copy supervisord config
 COPY supervisord.conf /etc/supervisord.conf
