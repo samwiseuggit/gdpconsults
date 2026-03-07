@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    restart: unless-stopped
+    networks:
+      - gdp-network
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    expose:
+      - "3000"
+    environment:
+      - NODE_ENV=production
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT:-1025}
+      - SMTP_SECURE=${SMTP_SECURE:-false}
+      - SMTP_USER=${SMTP_USER:-}
+      - SMTP_PASS=${SMTP_PASS:-}
+      - FROM_EMAIL=${FROM_EMAIL:-noreply@gdpconsults.ca}
+      - TO_EMAIL=${TO_EMAIL:-info@gdpconsults.ca}
+      - FRONTEND_URL=${FRONTEND_URL:-http://localhost}
+    restart: unless-stopped
+    networks:
+      - gdp-network
+
+networks:
+  gdp-network:
+    driver: bridge
