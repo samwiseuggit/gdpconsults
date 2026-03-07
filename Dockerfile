@@ -26,8 +26,9 @@ WORKDIR /app
 # Copy built frontend assets
 COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy nginx configuration to correct Alpine location
+RUN rm -f /etc/nginx/http.d/default.conf
+COPY nginx.conf /etc/nginx/http.d/default.conf
 
 # Copy API server files and its own package.json
 COPY api/ ./api/
