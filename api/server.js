@@ -14,7 +14,7 @@ app.use(helmet());
 // CORS configuration
 app.use(cors({
   origin: process.env.FRONTEND_URL || '*',
-  methods: ['POST'],
+  methods: ['POST', 'GET'],
   allowedHeaders: ['Content-Type']
 }));
 
@@ -22,17 +22,14 @@ app.use(cors({
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5,
-  message: {
-    success: false,
-    error: 'Too many requests, please try again later.'
-  }
+  message: { success: false, error: 'Too many requests, please try again later.' }
 });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Create SMTP transporter for Gmail
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || 'smtp.gmail.com',
   port: parseInt(process.env.SMTP_PORT) || 587,
   secure: process.env.SMTP_SECURE === 'true', // false for port 587 (STARTTLS)
@@ -63,19 +60,13 @@ app.post('/api/contact', limiter, async (req, res) => {
 
     // Validation
     if (!name || !email || !subject || !message) {
-      return res.status(400).json({
-        success: false,
-        error: 'Please fill in all required fields.'
-      });
+      return res.status(400).json({ success: false, error: 'Please fill in all required fields.' });
     }
 
     // Email validation regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return res.status(400).json({
-        success: false,
-        error: 'Please enter a valid email address.'
-      });
+      return res.status(400).json({ success: false, error: 'Please enter a valid email address.' });
     }
 
     // Prepare email content
@@ -93,29 +84,28 @@ app.post('/api/contact', limiter, async (req, res) => {
       replyTo: email,
       subject: `[${formName || 'Contact Form'}] ${subjectLabels[subject] || subject}`,
       html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Form:</strong> ${formName || 'Contact Form'}</p>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Organization:</strong> ${organization || 'N/A'}</p>
-        <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
-        <p><strong>Subject:</strong> ${subjectLabels[subject] || subject}</p>
-        <hr>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #1a1a2e;">New Contact Form Submission</h2>
+          <p><strong>Form:</strong> ${formName || 'Contact Form'}</p>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Organization:</strong> ${organization || 'N/A'}</p>
+          <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
+          <p><strong>Subject:</strong> ${subjectLabels[subject] || subject}</p>
+          <hr/>
+          <p><strong>Message:</strong></p>
+          <p>${message.replace(/\n/g, '<br>')}</p>
+        </div>
       `,
       text: `
-New Contact Form Submission
-
-Form: ${formName || 'Contact Form'}
-Name: ${name}
-Email: ${email}
-Organization: ${organization || 'N/A'}
-Phone: ${phone || 'N/A'}
-Subject: ${subjectLabels[subject] || subject}
-
-Message:
-${message}
+        New Contact Form Submission
+        Form: ${formName || 'Contact Form'}
+        Name: ${name}
+        Email: ${email}
+        Organization: ${organization || 'N/A'}
+        Phone: ${phone || 'N/A'}
+        Subject: ${subjectLabels[subject] || subject}
+        Message: ${message}
       `
     };
 
@@ -143,7 +133,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`API Server running on port ${PORT}`);
   console.log(`SMTP Host: ${process.env.SMTP_HOST || 'smtp.gmail.com'}`);
   console.log(`SMTP Port: ${process.env.SMTP_PORT || 587}`);
