@@ -31,17 +31,19 @@ const limiter = rateLimit({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Create SMTP transporter for Mailpit
+// Create SMTP transporter for Gmail
 const transporter = nodemailer.createTransporter({
-  host: process.env.SMTP_HOST || 'localhost',
-  port: process.env.SMTP_PORT || 1025,
-  secure: false, // Mailpit doesn't use TLS by default
-  auth: process.env.SMTP_USER ? {
+  host: process.env.SMTP_HOST || 'smtp.gmail.com',
+  port: parseInt(process.env.SMTP_PORT) || 587,
+  secure: process.env.SMTP_SECURE === 'true', // false for port 587 (STARTTLS)
+  requireTLS: true, // Require TLS for Gmail
+  auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASS
-  } : undefined,
+  },
   tls: {
-    rejectUnauthorized: false // Allow self-signed certificates
+    rejectUnauthorized: true, // Verify certificates for Gmail
+    minVersion: 'TLSv1.2'
   }
 });
 
@@ -50,7 +52,7 @@ transporter.verify((error, success) => {
   if (error) {
     console.error('SMTP Connection Error:', error);
   } else {
-    console.log('SMTP Server is ready to take messages');
+    console.log('Gmail SMTP connection verified successfully');
   }
 });
 
@@ -143,7 +145,9 @@ app.get('/api/health', (req, res) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`API Server running on port ${PORT}`);
-  console.log(`SMTP Host: ${process.env.SMTP_HOST || 'localhost'}`);
-  console.log(`SMTP Port: ${process.env.SMTP_PORT || 1025}`);
+  console.log(`SMTP Host: ${process.env.SMTP_HOST || 'smtp.gmail.com'}`);
+  console.log(`SMTP Port: ${process.env.SMTP_PORT || 587}`);
+  console.log(`SMTP User: ${process.env.SMTP_USER}`);
+  console.log(`From Email: ${process.env.FROM_EMAIL}`);
   console.log(`To Email: ${process.env.TO_EMAIL || 'info@gdpconsults.ca'}`);
 });
