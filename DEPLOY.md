@@ -56,7 +56,7 @@ Add these environment variables in Coolify:
 | `SMTP_PORT` | Mailpit SMTP port | `1025` |
 | `SMTP_USER` | SMTP username (if required) | leave empty for Mailpit |
 | `SMTP_PASS` | SMTP password (if required) | leave empty for Mailpit |
-| `FROM_EMAIL` | Sender email address | `noreply@gdpcconsulting.ca` |
+| `FROM_EMAIL` | Sender email address | `noreply@gdpconsults.ca` |
 | `TO_EMAIL` | Recipient email address | `info@gdpconsults.ca` |
 | `FRONTEND_URL` | Your domain URL | `https://your-domain.com` |
 
