@@ -86,7 +86,7 @@ app.post('/api/contact', limiter, async (req, res) => {
     };
 
     const mailOptions = {
-      from: process.env.FROM_EMAIL || 'noreply@gdpcconsulting.ca',
+      from: process.env.FROM_EMAIL || 'noreply@gdpconsults.ca',
       to: process.env.TO_EMAIL || 'info@gdpconsults.ca',
       replyTo: email,
       subject: `[${formName || 'Contact Form'}] ${subjectLabels[subject] || subject}`,
