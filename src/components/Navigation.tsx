@@ -55,8 +55,8 @@ export default function Navigation() {
             </div>
             <div className="hidden md:flex items-center gap-2 text-white/60 hover:text-emerald-400 transition-colors">
               <Mail className="w-3.5 h-3.5" />
-              <a href="mailto:info@gdpcconsulting.ca" className="hover:text-emerald-400 transition-colors">
-                info@gdpcconsulting.ca
+              <a href="mailto:info@gdpconsults.ca" className="hover:text-emerald-400 transition-colors">
+                info@gdpconsults.ca
               </a>
             </div>
           </div>
