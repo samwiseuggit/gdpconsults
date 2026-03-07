@@ -1,0 +1,34 @@
+{
+  "name": "GPD Consulting",
+  "description": "GPD Consulting website with React frontend and Node.js API",
+  "version": "1.0.0",
+  "services": {
+    "frontend": {
+      "build": {
+        "dockerfile": "Dockerfile",
+        "context": "."
+      },
+      "ports": ["80"],
+      "environment": [
+        "NODE_ENV=production"
+      ]
+    },
+    "api": {
+      "build": {
+        "dockerfile": "api/Dockerfile",
+        "context": "./api"
+      },
+      "ports": ["3000"],
+      "environment": [
+        "NODE_ENV=production",
+        "SMTP_HOST=${SMTP_HOST}",
+        "SMTP_PORT=${SMTP_PORT}",
+        "SMTP_USER=${SMTP_USER}",
+        "SMTP_PASS=${SMTP_PASS}",
+        "FROM_EMAIL=${FROM_EMAIL}",
+        "TO_EMAIL=${TO_EMAIL}",
+        "FRONTEND_URL=${FRONTEND_URL}"
+      ]
+    }
+  }
+}

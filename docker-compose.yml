@@ -1,38 +1,41 @@
 version: '3.8'
 
 services:
+  # Frontend - React app served by nginx
   frontend:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: gpd-consulting-frontend
     ports:
-      - "80:80"
-    depends_on:
-      - api
+      - "${FRONTEND_PORT:-80}:80"
+    environment:
+      - NODE_ENV=production
     restart: unless-stopped
     networks:
-      - gdp-network
+      - gpd-network
 
+  # Backend API for email handling
   api:
     build:
       context: ./api
       dockerfile: Dockerfile
-    expose:
-      - "3000"
+    container_name: gpd-consulting-api
+    ports:
+      - "${API_PORT:-3000}:3000"
     environment:
       - NODE_ENV=production
-      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_HOST=${SMTP_HOST:-mailpit}
       - SMTP_PORT=${SMTP_PORT:-1025}
-      - SMTP_SECURE=${SMTP_SECURE:-false}
       - SMTP_USER=${SMTP_USER:-}
       - SMTP_PASS=${SMTP_PASS:-}
-      - FROM_EMAIL=${FROM_EMAIL:-noreply@gdpconsults.ca}
+      - FROM_EMAIL=${FROM_EMAIL:-noreply@gdpcconsulting.ca}
       - TO_EMAIL=${TO_EMAIL:-info@gdpconsults.ca}
       - FRONTEND_URL=${FRONTEND_URL:-http://localhost}
     restart: unless-stopped
     networks:
-      - gdp-network
+      - gpd-network
 
 networks:
-  gdp-network:
+  gpd-network:
     driver: bridge

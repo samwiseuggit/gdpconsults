@@ -1,75 +1,149 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Security middleware
+app.use(helmet());
+
+// CORS configuration
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost',
-  credentials: true
+  origin: process.env.FRONTEND_URL || '*',
+  methods: ['POST'],
+  allowedHeaders: ['Content-Type']
 }));
 
-// Email transporter
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'mailpit',
-  port: parseInt(process.env.SMTP_PORT) || 1025,
-  secure: process.env.SMTP_SECURE === 'true',
-  auth: process.env.SMTP_USER ? {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS
-  } : undefined
-});
-
-// Health check
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
-});
-
-// Contact form handler
-app.post('/contact', async (req, res) => {
-  try {
-    const { name, email, organization, subject, message, 'bot-field': botField } = req.body;
-
-    // Honeypot check
-    if (botField) {
-      return res.status(200).json({ success: true });
-    }
-
-    // Validate required fields
-    if (!name || !email || !subject || !message) {
-      return res.status(400).json({ error: 'Missing required fields' });
-    }
-
-    // Send email
-    await transporter.sendMail({
-      from: `"${name}" <${process.env.FROM_EMAIL || 'noreply@gdpconsults.ca'}>`,
-      to: process.env.TO_EMAIL || 'info@gdpconsults.ca',
-      replyTo: email,
-      subject: `[GPD Consults] ${subject} - from ${name}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        ${organization ? `<p><strong>Organization:</strong> ${organization}</p>` : ''}
-        <p><strong>Subject:</strong> ${subject}</p>
-        <hr/>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br/>')}</p>
-      `,
-      text: `Name: ${name}\nEmail: ${email}\n${organization ? `Organization: ${organization}\n` : ''}Subject: ${subject}\n\nMessage:\n${message}`
-    });
-
-    res.json({ success: true, message: 'Email sent successfully' });
-  } catch (error) {
-    console.error('Email error:', error);
-    res.status(500).json({ error: 'Failed to send email' });
+// Rate limiting - 5 requests per 15 minutes per IP
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  message: {
+    success: false,
+    error: 'Too many requests, please try again later.'
   }
 });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Create SMTP transporter for Mailpit
+const transporter = nodemailer.createTransporter({
+  host: process.env.SMTP_HOST || 'localhost',
+  port: process.env.SMTP_PORT || 1025,
+  secure: false, // Mailpit doesn't use TLS by default
+  auth: process.env.SMTP_USER ? {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS
+  } : undefined,
+  tls: {
+    rejectUnauthorized: false // Allow self-signed certificates
+  }
+});
+
+// Verify SMTP connection
+transporter.verify((error, success) => {
+  if (error) {
+    console.error('SMTP Connection Error:', error);
+  } else {
+    console.log('SMTP Server is ready to take messages');
+  }
+});
+
+// Contact form endpoint
+app.post('/api/contact', limiter, async (req, res) => {
+  try {
+    const { name, email, organization, phone, subject, message, formName } = req.body;
+
+    // Validation
+    if (!name || !email || !subject || !message) {
+      return res.status(400).json({
+        success: false,
+        error: 'Please fill in all required fields.'
+      });
+    }
+
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        success: false,
+        error: 'Please enter a valid email address.'
+      });
+    }
+
+    // Prepare email content
+    const subjectLabels = {
+      partnership: 'Partnership Inquiry',
+      project: 'Project Discussion',
+      services: 'Services Information',
+      career: 'Career Opportunities',
+      other: 'Other'
+    };
+
+    const mailOptions = {
+      from: process.env.FROM_EMAIL || 'noreply@gdpcconsulting.ca',
+      to: process.env.TO_EMAIL || 'info@gdpconsults.ca',
+      replyTo: email,
+      subject: `[${formName || 'Contact Form'}] ${subjectLabels[subject] || subject}`,
+      html: `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Form:</strong> ${formName || 'Contact Form'}</p>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Organization:</strong> ${organization || 'N/A'}</p>
+        <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
+        <p><strong>Subject:</strong> ${subjectLabels[subject] || subject}</p>
+        <hr>
+        <p><strong>Message:</strong></p>
+        <p>${message.replace(/\n/g, '<br>')}</p>
+      `,
+      text: `
+New Contact Form Submission
+
+Form: ${formName || 'Contact Form'}
+Name: ${name}
+Email: ${email}
+Organization: ${organization || 'N/A'}
+Phone: ${phone || 'N/A'}
+Subject: ${subjectLabels[subject] || subject}
+
+Message:
+${message}
+      `
+    };
+
+    // Send email
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Email sent:', info.messageId);
+
+    res.status(200).json({
+      success: true,
+      message: 'Thank you for your message. We will get back to you soon!'
+    });
+
+  } catch (error) {
+    console.error('Email sending error:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to send message. Please try again later or contact us directly at info@gdpconsults.ca'
+    });
+  }
+});
+
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
+// Start server
 app.listen(PORT, () => {
-  console.log(`API server running on port ${PORT}`);
+  console.log(`API Server running on port ${PORT}`);
+  console.log(`SMTP Host: ${process.env.SMTP_HOST || 'localhost'}`);
+  console.log(`SMTP Port: ${process.env.SMTP_PORT || 1025}`);
+  console.log(`To Email: ${process.env.TO_EMAIL || 'info@gdpconsults.ca'}`);
 });
