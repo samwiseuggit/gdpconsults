@@ -18,25 +18,22 @@ app.use(cors({
   allowedHeaders: ['Content-Type']
 }));
 
-// Rate limiting - 5 requests per 15 minutes per IP
+// Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5,
-  message: {
-    success: false,
-    error: 'Too many requests, please try again later.'
-  }
+  message: { success: false, error: 'Too many requests, please try again later.' }
 });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Health check endpoint
+// Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Create SMTP transporter - created fresh per request to avoid startup crashes
+// Create transporter per request (avoids startup crash)
 function createTransporter() {
   return nodemailer.createTransport({
     host: process.env.SMTP_HOST || 'smtp.gmail.com',
@@ -54,26 +51,18 @@ function createTransporter() {
   });
 }
 
-// Contact form endpoint
-app.post('/api/send-email', limiter, async (req, res) => {
+// Email handler - supports both /api/contact and /api/send-email
+async function handleEmailSubmission(req, res) {
   try {
     const { name, email, organization, phone, subject, message } = req.body;
 
-    // Validation
     if (!name || !email || !subject || !message) {
-      return res.status(400).json({
-        success: false,
-        error: 'Please fill in all required fields.'
-      });
+      return res.status(400).json({ success: false, error: 'Please fill in all required fields.' });
     }
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return res.status(400).json({
-        success: false,
-        error: 'Please provide a valid email address.'
-      });
+      return res.status(400).json({ success: false, error: 'Please provide a valid email address.' });
     }
 
     const transporter = createTransporter();
@@ -108,7 +97,6 @@ app.post('/api/send-email', limiter, async (req, res) => {
     };
 
     await transporter.sendMail(mailOptions);
-
     console.log(`Email sent successfully from ${email}`);
     res.json({ success: true, message: 'Your message has been sent successfully!' });
 
@@ -119,13 +107,14 @@ app.post('/api/send-email', limiter, async (req, res) => {
       error: 'Failed to send email. Please try again or contact us directly at info@gdpconsults.ca'
     });
   }
-});
+}
+
+// Routes - handle both endpoint names
+app.post('/api/contact', limiter, handleEmailSubmission);
+app.post('/api/send-email', limiter, handleEmailSubmission);
 
 // Start server
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`API server running on port ${PORT}`);
-  console.log(`SMTP Host: ${process.env.SMTP_HOST}`);
-  console.log(`SMTP User: ${process.env.SMTP_USER}`);
-  console.log(`From: ${process.env.FROM_EMAIL}`);
-  console.log(`To: ${process.env.TO_EMAIL}`);
+  console.log(`SMTP: ${process.env.SMTP_USER}@${process.env.SMTP_HOST}:${process.env.SMTP_PORT}`);
 });
