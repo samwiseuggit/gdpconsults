@@ -5,76 +5,341 @@
   
   <!-- Home Page -->
   <url>
-    <loc>https://gdpcconsulting.ca/</loc>
+    <loc>https://gdpconsults.ca/</loc>
     <lastmod>2026-03-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gdpcconsulting.ca/" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpcconsulting.ca/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpcconsulting.ca/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/" />
     <image:image>
-      <image:loc>https://gdpcconsulting.ca/hero_airport_terminal.jpg</image:loc>
+      <image:loc>https://gdpconsults.ca/hero_airport_terminal.webp</image:loc>
       <image:title>GPD Consulting - Global Partnerships for Africa</image:title>
     </image:image>
   </url>
   
   <!-- About Page -->
   <url>
-    <loc>https://gdpcconsulting.ca/about</loc>
+    <loc>https://gdpconsults.ca/about</loc>
     <lastmod>2026-03-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gdpcconsulting.ca/about" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpcconsulting.ca/about" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpcconsulting.ca/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/about" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/about" />
     <image:image>
-      <image:loc>https://gdpcconsulting.ca/cap_strategic_advisory.jpg</image:loc>
+      <image:loc>https://gdpconsults.ca/cap_strategic_advisory.webp</image:loc>
       <image:title>About GPD Consulting</image:title>
     </image:image>
   </url>
   
   <!-- Services Page -->
   <url>
-    <loc>https://gdpcconsulting.ca/services</loc>
+    <loc>https://gdpconsults.ca/services</loc>
     <lastmod>2026-03-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gdpcconsulting.ca/services" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpcconsulting.ca/services" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpcconsulting.ca/services" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/services" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/services" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/services" />
     <image:image>
-      <image:loc>https://gdpcconsulting.ca/cap_infrastructure_transport.jpg</image:loc>
+      <image:loc>https://gdpconsults.ca/cap_infrastructure_transport.webp</image:loc>
       <image:title>Our Services - GPD Consulting</image:title>
     </image:image>
   </url>
   
   <!-- Projects Page -->
   <url>
-    <loc>https://gdpcconsulting.ca/projects</loc>
+    <loc>https://gdpconsults.ca/projects</loc>
     <lastmod>2026-03-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gdpcconsulting.ca/projects" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpcconsulting.ca/projects" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpcconsulting.ca/projects" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/projects" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/projects" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/projects" />
     <image:image>
-      <image:loc>https://gdpcconsulting.ca/project_aviation_panorama.jpg</image:loc>
+      <image:loc>https://gdpconsults.ca/project_aviation_panorama.webp</image:loc>
       <image:title>Our Projects - GPD Consulting</image:title>
     </image:image>
   </url>
   
   <!-- Contact Page -->
   <url>
-    <loc>https://gdpcconsulting.ca/contact</loc>
+    <loc>https://gdpconsults.ca/contact</loc>
     <lastmod>2026-03-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://gdpcconsulting.ca/contact" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpcconsulting.ca/contact" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpcconsulting.ca/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/contact" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/contact" />
     <image:image>
-      <image:loc>https://gdpcconsulting.ca/cap_strategic_advisory.jpg</image:loc>
+      <image:loc>https://gdpconsults.ca/cap_strategic_advisory.webp</image:loc>
       <image:title>Contact GPD Consulting</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Privacy Policy Page -->
+  <url>
+    <loc>https://gdpconsults.ca/privacy-policy</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/privacy-policy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/privacy-policy" />
+  </url>
+  
+  <!-- Terms of Service Page -->
+  <url>
+    <loc>https://gdpconsults.ca/terms-of-service</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/terms-of-service" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/terms-of-service" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/terms-of-service" />
+  </url>
+  
+  <!-- Service Pages -->
+  <url>
+    <loc>https://gdpconsults.ca/services/project-finance</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/services/project-finance" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/services/project-finance" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/services/project-finance" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/cap_project_finance.webp</image:loc>
+      <image:title>Project Finance Services</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gdpconsults.ca/services/mining-operations</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/services/mining-operations" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/services/mining-operations" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/services/mining-operations" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/cap_strategic_advisory.webp</image:loc>
+      <image:title>Mining Operations Services</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gdpconsults.ca/services/infrastructure-development</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/services/infrastructure-development" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/services/infrastructure-development" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/services/infrastructure-development" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/cap_infrastructure_transport.webp</image:loc>
+      <image:title>Infrastructure Development Services</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gdpconsults.ca/services/public-private-partnerships</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/services/public-private-partnerships" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/services/public-private-partnerships" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/services/public-private-partnerships" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/cap_public_private_partnerships.webp</image:loc>
+      <image:title>Public-Private Partnerships Services</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Project Detail Pages -->
+  <url>
+    <loc>https://gdpconsults.ca/projects/aviation</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/projects/aviation" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/projects/aviation" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/projects/aviation" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/project_aviation_panorama.webp</image:loc>
+      <image:title>Aviation Infrastructure Project</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gdpconsults.ca/projects/energy</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/projects/energy" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/projects/energy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/projects/energy" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/cap_energy_sustainability.webp</image:loc>
+      <image:title>Renewable Energy Project</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Additional Service Pages -->
+  <url>
+    <loc>https://gdpconsults.ca/services/governmental-affairs</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/services/governmental-affairs" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/services/governmental-affairs" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/services/governmental-affairs" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/cap_strategic_advisory.webp</image:loc>
+      <image:title>Governmental Affairs Services</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gdpconsults.ca/services/international-partnerships</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/services/international-partnerships" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/services/international-partnerships" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/services/international-partnerships" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/cap_public_private_partnerships.webp</image:loc>
+      <image:title>International Partnerships Services</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gdpconsults.ca/services/project-development</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/services/project-development" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/services/project-development" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/services/project-development" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/cap_infrastructure_transport.webp</image:loc>
+      <image:title>Project Development Services</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gdpconsults.ca/services/negotiation</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/services/negotiation" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/services/negotiation" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/services/negotiation" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/cap_project_finance.webp</image:loc>
+      <image:title>Negotiation Services</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gdpconsults.ca/services/architecture-engineering</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/services/architecture-engineering" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/services/architecture-engineering" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/services/architecture-engineering" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/cap_housing_urban.webp</image:loc>
+      <image:title>Architecture & Engineering Services</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gdpconsults.ca/services/green-technology</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/services/green-technology" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/services/green-technology" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/services/green-technology" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/cap_energy_sustainability.webp</image:loc>
+      <image:title>Green Technology Services</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gdpconsults.ca/services/economic-lobbying</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/services/economic-lobbying" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/services/economic-lobbying" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/services/economic-lobbying" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/cap_strategic_advisory.webp</image:loc>
+      <image:title>Economic Lobbying Services</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gdpconsults.ca/services/aviation-industry</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/services/aviation-industry" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/services/aviation-industry" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/services/aviation-industry" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/project_aviation_panorama.webp</image:loc>
+      <image:title>Aviation Industry Services</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Additional Project Detail Pages -->
+  <url>
+    <loc>https://gdpconsults.ca/projects/housing</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/projects/housing" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/projects/housing" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/projects/housing" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/cap_housing_urban.webp</image:loc>
+      <image:title>Urban Housing Development Project</image:title>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://gdpconsults.ca/projects/agriculture</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/projects/agriculture" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/projects/agriculture" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/projects/agriculture" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/cap_agriculture_water.webp</image:loc>
+      <image:title>Agricultural Transformation Project</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Blog Page -->
+  <url>
+    <loc>https://gdpconsults.ca/blog</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://gdpconsults.ca/blog" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://gdpconsults.ca/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://gdpconsults.ca/blog" />
+    <image:image>
+      <image:loc>https://gdpconsults.ca/cap_strategic_advisory.webp</image:loc>
+      <image:title>GPD Consulting Blog</image:title>
     </image:image>
   </url>
 

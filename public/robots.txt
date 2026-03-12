@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://gdpcconsulting.ca/sitemap.xml
+Sitemap: https://gdpconsults.ca/sitemap.xml
 
 # Crawl rate
 Crawl-delay: 1
