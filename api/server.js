@@ -3,10 +3,10 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-require('dotenv').config();
+require('dotenv').config({ silent: true });
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.API_PORT || process.env.PORT || 3000;
 
 // Security middleware
 app.use(helmet());
@@ -14,7 +14,7 @@ app.use(helmet());
 // CORS configuration
 app.use(cors({
   origin: process.env.FRONTEND_URL || '*',
-  methods: ['POST'],
+  methods: ['POST', 'GET'],
   allowedHeaders: ['Content-Type']
 }));
 
@@ -31,35 +31,33 @@ const limiter = rateLimit({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Create SMTP transporter for Gmail
-const transporter = nodemailer.createTransporter({
-  host: process.env.SMTP_HOST || 'smtp.gmail.com',
-  port: parseInt(process.env.SMTP_PORT) || 587,
-  secure: process.env.SMTP_SECURE === 'true', // false for port 587 (STARTTLS)
-  requireTLS: true, // Require TLS for Gmail
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS
-  },
-  tls: {
-    rejectUnauthorized: true, // Verify certificates for Gmail
-    minVersion: 'TLSv1.2'
-  }
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Verify SMTP connection
-transporter.verify((error, success) => {
-  if (error) {
-    console.error('SMTP Connection Error:', error);
-  } else {
-    console.log('Gmail SMTP connection verified successfully');
-  }
-});
+// Create SMTP transporter - created fresh per request to avoid startup crashes
+function createTransporter() {
+  return nodemailer.createTransport({
+    host: process.env.SMTP_HOST || 'smtp.gmail.com',
+    port: parseInt(process.env.SMTP_PORT) || 587,
+    secure: process.env.SMTP_SECURE === 'true',
+    requireTLS: true,
+    auth: {
+      user: process.env.SMTP_USER,
+      pass: process.env.SMTP_PASS
+    },
+    tls: {
+      rejectUnauthorized: false,
+      minVersion: 'TLSv1.2'
+    }
+  });
+}
 
 // Contact form endpoint
-app.post('/api/contact', limiter, async (req, res) => {
+app.post('/api/send-email', limiter, async (req, res) => {
   try {
-    const { name, email, organization, phone, subject, message, formName } = req.body;
+    const { name, email, organization, phone, subject, message } = req.body;
 
     // Validation
     if (!name || !email || !subject || !message) {
@@ -69,85 +67,65 @@ app.post('/api/contact', limiter, async (req, res) => {
       });
     }
 
-    // Email validation regex
+    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({
         success: false,
-        error: 'Please enter a valid email address.'
+        error: 'Please provide a valid email address.'
       });
     }
 
-    // Prepare email content
-    const subjectLabels = {
-      partnership: 'Partnership Inquiry',
-      project: 'Project Discussion',
-      services: 'Services Information',
-      career: 'Career Opportunities',
-      other: 'Other'
-    };
+    const transporter = createTransporter();
 
     const mailOptions = {
-      from: process.env.FROM_EMAIL || 'noreply@gdpconsults.ca',
-      to: process.env.TO_EMAIL || 'info@gdpconsults.ca',
+      from: `"GDP Consulting Website" <${process.env.FROM_EMAIL || process.env.SMTP_USER}>`,
+      to: process.env.TO_EMAIL || process.env.SMTP_USER,
       replyTo: email,
-      subject: `[${formName || 'Contact Form'}] ${subjectLabels[subject] || subject}`,
+      subject: `[GDP Consulting] ${subject} - from ${name}`,
       html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Form:</strong> ${formName || 'Contact Form'}</p>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Organization:</strong> ${organization || 'N/A'}</p>
-        <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
-        <p><strong>Subject:</strong> ${subjectLabels[subject] || subject}</p>
-        <hr>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-      `,
-      text: `
-New Contact Form Submission
-
-Form: ${formName || 'Contact Form'}
-Name: ${name}
-Email: ${email}
-Organization: ${organization || 'N/A'}
-Phone: ${phone || 'N/A'}
-Subject: ${subjectLabels[subject] || subject}
-
-Message:
-${message}
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background: #065f46; padding: 20px; border-radius: 8px 8px 0 0;">
+            <h2 style="color: white; margin: 0;">New Contact Form Submission</h2>
+            <p style="color: #a7f3d0; margin: 5px 0 0;">GDP Consulting Website</p>
+          </div>
+          <div style="background: #f9fafb; padding: 24px; border-radius: 0 0 8px 8px; border: 1px solid #e5e7eb;">
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr><td style="padding: 8px 0; font-weight: bold; color: #374151; width: 130px;">Name:</td><td style="padding: 8px 0; color: #111827;">${name}</td></tr>
+              <tr><td style="padding: 8px 0; font-weight: bold; color: #374151;">Email:</td><td style="padding: 8px 0;"><a href="mailto:${email}" style="color: #059669;">${email}</a></td></tr>
+              ${organization ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #374151;">Organization:</td><td style="padding: 8px 0; color: #111827;">${organization}</td></tr>` : ''}
+              ${phone ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #374151;">Phone:</td><td style="padding: 8px 0; color: #111827;">${phone}</td></tr>` : ''}
+              <tr><td style="padding: 8px 0; font-weight: bold; color: #374151;">Subject:</td><td style="padding: 8px 0; color: #111827;">${subject}</td></tr>
+            </table>
+            <div style="margin-top: 16px; padding: 16px; background: white; border-radius: 6px; border: 1px solid #e5e7eb;">
+              <p style="font-weight: bold; color: #374151; margin: 0 0 8px;">Message:</p>
+              <p style="color: #374151; line-height: 1.6; margin: 0; white-space: pre-wrap;">${message}</p>
+            </div>
+            <p style="margin-top: 16px; color: #6b7280; font-size: 12px;">Sent from gdpconsults.ca contact form</p>
+          </div>
+        </div>
       `
     };
 
-    // Send email
-    const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent:', info.messageId);
+    await transporter.sendMail(mailOptions);
 
-    res.status(200).json({
-      success: true,
-      message: 'Thank you for your message. We will get back to you soon!'
-    });
+    console.log(`Email sent successfully from ${email}`);
+    res.json({ success: true, message: 'Your message has been sent successfully!' });
 
   } catch (error) {
-    console.error('Email sending error:', error);
+    console.error('Email send error:', error.message);
     res.status(500).json({
       success: false,
-      error: 'Failed to send message. Please try again later or contact us directly at info@gdpconsults.ca'
+      error: 'Failed to send email. Please try again or contact us directly at info@gdpconsults.ca'
     });
   }
 });
 
-// Health check endpoint
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() });
-});
-
 // Start server
-app.listen(PORT, () => {
-  console.log(`API Server running on port ${PORT}`);
-  console.log(`SMTP Host: ${process.env.SMTP_HOST || 'smtp.gmail.com'}`);
-  console.log(`SMTP Port: ${process.env.SMTP_PORT || 587}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`API server running on port ${PORT}`);
+  console.log(`SMTP Host: ${process.env.SMTP_HOST}`);
   console.log(`SMTP User: ${process.env.SMTP_USER}`);
-  console.log(`From Email: ${process.env.FROM_EMAIL}`);
-  console.log(`To Email: ${process.env.TO_EMAIL || 'info@gdpconsults.ca'}`);
+  console.log(`From: ${process.env.FROM_EMAIL}`);
+  console.log(`To: ${process.env.TO_EMAIL}`);
 });
