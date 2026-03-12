@@ -2,6 +2,7 @@ import HeroSection from '../sections/HeroSection';
 import CapabilitiesSection from '../sections/CapabilitiesSection';
 import AboutSection from '../sections/AboutSection';
 import ProjectSection from '../sections/ProjectSection';
+import TestimonialsSection from '../sections/TestimonialsSection';
 import ContactSection from '../sections/ContactSection';
 import SEO from '../components/SEO';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -24,18 +25,22 @@ export default function Home() {
 
   const currentSeo = seoData[language];
 
+  const breadcrumbs = [
+    { name: language === 'fr' ? 'Accueil' : 'Home', url: 'https://gdpconsults.ca/' },
+  ];
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     name: language === 'fr' ? 'GPD Consulting - Accueil' : 'GPD Consulting - Home',
     description: currentSeo.description,
-    url: 'https://gdpcconsulting.ca/',
+    url: 'https://gdpconsults.ca/',
     mainEntity: {
       '@type': 'Organization',
       name: 'GPD Consulting',
       description: currentSeo.description,
-      url: 'https://gdpcconsulting.ca',
-      logo: 'https://gdpcconsulting.ca/logo-white-bg.svg',
+      url: 'https://gdpconsults.ca',
+      logo: 'https://gdpconsults.ca/logo-white-bg.svg',
     },
   };
 
@@ -45,14 +50,16 @@ export default function Home() {
         title={currentSeo.title}
         description={currentSeo.description}
         keywords={currentSeo.keywords}
-        canonicalUrl="https://gdpcconsulting.ca/"
+        canonicalUrl="https://gdpconsults.ca/"
         structuredData={structuredData}
+        breadcrumbs={breadcrumbs}
       />
       <div className="bg-white">
         <HeroSection />
         <CapabilitiesSection />
         <AboutSection />
         <ProjectSection />
+        <TestimonialsSection />
         <ContactSection />
       </div>
     </>

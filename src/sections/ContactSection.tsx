@@ -277,6 +277,8 @@ export default function ContactSection() {
                         onChange={handleChange}
                         className="form-input"
                         required
+                        aria-invalid={formData.subject === ''}
+                        aria-describedby={formData.subject === '' ? 'subject-error-home' : undefined}
                       >
                         <option value="">{t('contact.form.subject')}</option>
                         <option value="partnership">{t('subject.partnership')}</option>
@@ -284,6 +286,9 @@ export default function ContactSection() {
                         <option value="services">{t('subject.services')}</option>
                         <option value="other">{t('subject.other')}</option>
                       </select>
+                      {formData.subject === '' && (
+                        <span id="subject-error-home" className="sr-only">{t('contact.form.subject.error')}</span>
+                      )}
                     </div>
                   </div>
 

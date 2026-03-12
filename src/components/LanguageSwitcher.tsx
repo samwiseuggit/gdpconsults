@@ -23,7 +23,8 @@ export default function LanguageSwitcher() {
           language === 'fr'
             ? 'bg-emerald-500 text-white border-emerald-500'
             : 'text-gray-700 bg-white border-gray-200 hover:border-emerald-300 hover:text-emerald-600'
-        }`}      >
+        }`}
+      >
         FR
       </button>
     </div>

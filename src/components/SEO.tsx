@@ -10,17 +10,19 @@ interface SEOProps {
   canonicalUrl?: string;
   structuredData?: object;
   noindex?: boolean;
+  breadcrumbs?: Array<{ name: string; url: string }>;
 }
 
 export default function SEO({
   title,
   description,
   keywords,
-  ogImage = 'https://gdpcconsulting.ca/og-image.jpg',
+  ogImage = 'https://gdpconsults.ca/og-image.webp',
   ogType = 'website',
   canonicalUrl,
   structuredData,
   noindex = false,
+  breadcrumbs,
 }: SEOProps) {
   const { language } = useLanguage();
 
@@ -112,6 +114,28 @@ export default function SEO({
         document.head.appendChild(script);
       }
       script.textContent = JSON.stringify(structuredData);
+    }
+
+    // Breadcrumb Structured Data
+    if (breadcrumbs && breadcrumbs.length > 0) {
+      const breadcrumbData = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbs.map((crumb, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: crumb.name,
+          item: crumb.url,
+        })),
+      };
+      let breadcrumbScript = document.querySelector('#breadcrumb-data') as HTMLScriptElement;
+      if (!breadcrumbScript) {
+        breadcrumbScript = document.createElement('script');
+        breadcrumbScript.id = 'breadcrumb-data';
+        breadcrumbScript.type = 'application/ld+json';
+        document.head.appendChild(breadcrumbScript);
+      }
+      breadcrumbScript.textContent = JSON.stringify(breadcrumbData);
     }
 
     // Cleanup function

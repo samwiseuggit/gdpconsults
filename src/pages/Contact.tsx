@@ -53,11 +53,14 @@ export default function Contact() {
   }, []);
 
   const [submitError, setSubmitError] = useState('');
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitError('');
+    // Mark all fields as touched on submit attempt
+    setTouched({ name: true, email: true, subject: true, message: true });
     
     try {
       // Get API URL from environment or use default
@@ -93,6 +96,7 @@ export default function Contact() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setTouched(prev => ({ ...prev, [e.target.name]: true }));
   };
 
   const seoData = {
@@ -110,17 +114,22 @@ export default function Contact() {
 
   const currentSeo = seoData[language];
 
+  const breadcrumbs = [
+    { name: language === 'fr' ? 'Accueil' : 'Home', url: 'https://gdpconsults.ca/' },
+    { name: language === 'fr' ? 'Contact' : 'Contact', url: 'https://gdpconsults.ca/contact' },
+  ];
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
     name: language === 'fr' ? 'Contact - GPD Consulting' : 'Contact Us - GPD Consulting',
     description: currentSeo.description,
-    url: 'https://gdpcconsulting.ca/contact',
+    url: 'https://gdpconsults.ca/contact',
     mainEntity: {
       '@type': 'Organization',
       name: 'GPD Consulting',
-      url: 'https://gdpcconsulting.ca',
-      logo: 'https://gdpcconsulting.ca/logo-white-bg.svg',
+      url: 'https://gdpconsults.ca',
+      logo: 'https://gdpconsults.ca/logo-white-bg.svg',
       contactPoint: {
         '@type': 'ContactPoint',
         telephone: '+1-416-617-5638',
@@ -145,15 +154,16 @@ export default function Contact() {
         title={currentSeo.title}
         description={currentSeo.description}
         keywords={currentSeo.keywords}
-        canonicalUrl="https://gdpcconsulting.ca/contact"
+        canonicalUrl="https://gdpconsults.ca/contact"
         structuredData={structuredData}
+        breadcrumbs={breadcrumbs}
       />
       <div ref={pageRef} className="bg-white">
       {/* Page Header */}
       <section className="relative py-32 lg:py-40 px-4 md:px-8 bg-gray-950 overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="/cap_strategic_advisory.jpg" 
+            src="/cap_strategic_advisory.webp" 
             alt="Contact"
             className="w-full h-full object-cover opacity-20"
           />
@@ -339,6 +349,8 @@ export default function Contact() {
                         onChange={handleChange}
                         className="form-input"
                         required
+                        aria-invalid={touched.subject && formData.subject === ''}
+                        aria-describedby={touched.subject && formData.subject === '' ? 'subject-error' : undefined}
                       >
                         <option value="">{t('contact.form.subject.select')}</option>
                         <option value="partnership">{t('contact.form.subject.partnership')}</option>
@@ -347,6 +359,9 @@ export default function Contact() {
                         <option value="career">{t('contact.form.subject.career')}</option>
                         <option value="other">{t('contact.form.subject.other')}</option>
                       </select>
+                      {touched.subject && formData.subject === '' && (
+                        <span id="subject-error" className="sr-only">{t('contact.form.subject.error')}</span>
+                      )}
                     </div>
 
                     <div className="mb-8 animate-item">
@@ -397,18 +412,36 @@ export default function Contact() {
             </h2>
           </div>
           
-          <div className="animate-item aspect-[21/9] bg-gradient-to-br from-gray-50 to-emerald-50 rounded-3xl flex items-center justify-center relative overflow-hidden shadow-xl shadow-emerald-500/5 border border-emerald-100">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-emerald-100/50 via-transparent to-transparent" />
-            <div className="text-center relative z-10">
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-500/25">
-                <MapPin className="w-10 h-10 text-white" />
+          <div className="animate-item relative overflow-hidden rounded-3xl shadow-xl shadow-emerald-500/5 border border-emerald-100">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.9785264960194!2d-79.3831844845023!3d43.6486946791216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b34d68a2d7f6b%3A0x3c1235c6f9f8c8e0!2s100%20King%20St%20W%2C%20Toronto%2C%20ON%20M5X%201C7%2C%20Canada!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
+              width="100%"
+              height="500"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title={language === 'fr' ? 'Emplacement de GPD Consulting' : 'GPD Consulting Location'}
+              className="w-full"
+            />
+            <div className="absolute bottom-6 left-6 bg-white rounded-2xl p-6 shadow-xl max-w-sm">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <p className="text-gray-900 font-semibold mb-1">{t('contact.location.address1')}</p>
+                  <p className="text-gray-500 text-sm">{t('contact.location.address2')}</p>
+                  <a 
+                    href="https://maps.google.com/?q=100+King+Street+West+Suite+5700+Toronto+Ontario+M5X+1C7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-emerald-600 text-sm font-medium mt-2 inline-flex items-center gap-1 hover:underline"
+                  >
+                    {t('contact.location.directions')} →
+                  </a>
+                </div>
               </div>
-              <p className="text-gray-900 font-heading font-bold text-2xl mb-2">
-                {t('contact.location.address1')}
-              </p>
-              <p className="text-gray-500 text-lg">
-                {t('contact.location.address2')}
-              </p>
             </div>
           </div>
         </div>

@@ -91,6 +91,11 @@ export default function Services() {
 
   const currentSeo = seoData[language];
 
+  const breadcrumbs = [
+    { name: language === 'fr' ? 'Accueil' : 'Home', url: 'https://gdpconsults.ca/' },
+    { name: language === 'fr' ? 'Services' : 'Services', url: 'https://gdpconsults.ca/services' },
+  ];
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -141,17 +146,22 @@ export default function Services() {
         title={currentSeo.title}
         description={currentSeo.description}
         keywords={currentSeo.keywords}
-        canonicalUrl="https://gdpcconsulting.ca/services"
+        canonicalUrl="https://gdpconsults.ca/services"
         structuredData={structuredData}
+        breadcrumbs={breadcrumbs}
       />
       <div ref={pageRef} className="bg-white">
       {/* Page Header */}
       <section className="relative py-32 lg:py-40 px-4 md:px-8 bg-gray-950 overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="/cap_infrastructure_transport.jpg" 
+            src="/cap_infrastructure_transport.webp" 
             alt="Services"
             className="w-full h-full object-cover opacity-20"
+            width="1920"
+            height="1080"
+            loading="lazy"
+            decoding="async"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-gray-950/95 to-emerald-950/70" />
         </div>
@@ -331,9 +341,13 @@ export default function Services() {
             <div className="animate-item relative">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-emerald-500/10">
                 <img 
-                  src="/cap_energy_sustainability.jpg"
+                  src="/cap_energy_sustainability.webp"
                   alt="Technology transfer"
                   className="w-full aspect-[4/3] object-cover"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="absolute -bottom-6 -left-6 w-full h-full border-2 border-emerald-400/30 rounded-3xl -z-10" />

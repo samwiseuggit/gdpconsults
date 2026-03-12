@@ -12,7 +12,7 @@ const projects = [
   {
     icon: Plane,
     key: 'aviation',
-    image: '/project_aviation_panorama.jpg',
+    image: '/project_aviation_panorama.webp',
     stats: [
       { key: 'investment', value: '$500M+' },
       { key: 'capacity', value: '10M+' },
@@ -23,7 +23,7 @@ const projects = [
   {
     icon: Building2,
     key: 'housing',
-    image: '/cap_housing_urban.jpg',
+    image: '/cap_housing_urban.webp',
     stats: [
       { key: 'units', value: '5,000+' },
       { key: 'families', value: '20,000' },
@@ -34,7 +34,7 @@ const projects = [
   {
     icon: Zap,
     key: 'energy',
-    image: '/cap_energy_sustainability.jpg',
+    image: '/cap_energy_sustainability.webp',
     stats: [
       { key: 'capacity', value: '200MW' },
       { key: 'homes', value: '500K' },
@@ -45,7 +45,7 @@ const projects = [
   {
     icon: Wheat,
     key: 'agri',
-    image: '/cap_agriculture_water.jpg',
+    image: '/cap_agriculture_water.webp',
     stats: [
       { key: 'farmers', value: '10,000+' },
       { key: 'hectares', value: '50,000' },
@@ -56,7 +56,7 @@ const projects = [
   {
     icon: HardHat,
     key: 'infra',
-    image: '/cap_infrastructure_transport.jpg',
+    image: '/cap_infrastructure_transport.webp',
     stats: [
       { key: 'projects', value: '25+' },
       { key: 'investment', value: '$1B+' },
@@ -117,6 +117,11 @@ export default function Projects() {
 
   const currentSeo = seoData[language];
 
+  const breadcrumbs = [
+    { name: language === 'fr' ? 'Accueil' : 'Home', url: 'https://gdpconsults.ca/' },
+    { name: language === 'fr' ? 'Projets' : 'Projects', url: 'https://gdpconsults.ca/projects' },
+  ];
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -144,17 +149,22 @@ export default function Projects() {
         title={currentSeo.title}
         description={currentSeo.description}
         keywords={currentSeo.keywords}
-        canonicalUrl="https://gdpcconsulting.ca/projects"
+        canonicalUrl="https://gdpconsults.ca/projects"
         structuredData={structuredData}
+        breadcrumbs={breadcrumbs}
       />
       <div ref={pageRef} className="bg-white">
         {/* Page Header */}
         <section className="relative py-32 lg:py-40 px-4 md:px-8 bg-gray-950 overflow-hidden">
           <div className="absolute inset-0">
             <img 
-              src="/project_aviation_panorama.jpg" 
+              src="/project_aviation_panorama.webp" 
               alt="Projects"
               className="w-full h-full object-cover opacity-20"
+              width="1920"
+              height="1080"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-gray-950/95 to-emerald-950/70" />
           </div>
@@ -258,6 +268,10 @@ export default function Projects() {
                       src={project.image}
                       alt={t(`proj.${project.key}.title`)}
                       className="w-full aspect-[16/10] object-cover transition-transform duration-700 group-hover:scale-105"
+                      width="800"
+                      height="500"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                     

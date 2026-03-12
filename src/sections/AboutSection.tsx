@@ -93,27 +93,31 @@ export default function AboutSection() {
       <div className="max-w-7xl mx-auto relative">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center mb-24">
           {/* Image Side */}
-          <div className="relative">
+          <div className="relative pb-12 pr-12">
             <div className="about-image-container relative">
               {/* Main Image */}
               <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-emerald-500/10">
                 <img 
-                  src="/cap_public_private_partnerships.jpg"
+                  src="/cap_public_private_partnerships.webp"
                   alt={t('about.image.alt')}
                   className="w-full aspect-[4/5] object-cover"
+                  width="600"
+                  height="750"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/40 via-transparent to-transparent" />
               </div>
 
               {/* Floating Card */}
-              <div className="absolute -bottom-8 -right-8 bg-white rounded-2xl p-6 shadow-xl shadow-black/10 max-w-xs">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center">
-                    <Users className="w-6 h-6 text-emerald-600" />
+              <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl p-5 shadow-xl shadow-black/10 w-48">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                    <Users className="w-5 h-5 text-emerald-600" />
                   </div>
-                  <div>
-                    <div className="font-heading text-2xl font-bold text-gray-900">50+</div>
-                    <div className="text-gray-500 text-sm">{t('about.partners')}</div>
+                  <div className="min-w-0">
+                    <div className="font-heading text-xl font-bold text-gray-900">50+</div>
+                    <div className="text-gray-500 text-xs truncate">{t('about.partners')}</div>
                   </div>
                 </div>
                 <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">

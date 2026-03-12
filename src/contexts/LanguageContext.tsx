@@ -33,7 +33,7 @@ const translations = {
     'hero.stats.continents': 'Continents',
     'hero.stats.value': 'Project Value',
     'hero.video.title': 'Watch Our Story',
-    'hero.video.duration': '2:30 min video',
+    'hero.video.duration': '1:17 min video',
     
     // About Section
     'about.tagline': 'About Us',
@@ -98,7 +98,7 @@ const translations = {
     // Project Items
     'project.aviation.title': 'Modernizing Aviation Infrastructure',
     'project.aviation.category': 'Aviation',
-    'project.aviation.desc': 'A comprehensive upgrade program spanning terminals, airside systems, and passenger experience—designed for safety, capacity, and long-term resilience.',
+    'project.aviation.desc': 'A comprehensive upgrade program spanning terminals, airside systems, and passenger experience-designed for safety, capacity, and long-term resilience.',
     'project.housing.title': 'Urban Housing Development',
     'project.housing.category': 'Housing',
     'project.housing.desc': 'Affordable housing programs and city frameworks designed to create sustainable, inclusive communities with modern amenities.',
@@ -170,7 +170,7 @@ const translations = {
     'subject.other': 'Other',
     
     // Footer
-    'footer.description': 'Green Diamond Partnership Consulting Inc. — A distinguished global enterprise dedicated to Africa\'s sustainable economic development.',
+    'footer.description': 'Green Diamond Partnership Consulting Inc. - A distinguished global enterprise dedicated to Africa\'s sustainable economic development.',
     'footer.quickLinks': 'Quick Links',
     'footer.services': 'Services',
     'footer.contact': 'Contact',
@@ -196,7 +196,7 @@ const translations = {
     'about.who.title1': 'A Global Enterprise with',
     'about.who.title2': 'African Expertise',
     'about.who.p1': "GPD Consulting is a distinguished global enterprise operating worldwide with deep expertise and specialized focus on Africa. With offices and partnerships spanning America, Europe, and Africa, we bring world-class capabilities to drive sustainable economic development across the continent.",
-    'about.who.p2': "Our comprehensive services include strategic advisory, project financing, mining operations, international trade, and infrastructure development—delivering transformative solutions that unlock Africa's vast potential while maintaining global standards of excellence.",
+    'about.who.p2': "Our comprehensive services include strategic advisory, project financing, mining operations, international trade, and infrastructure development-delivering transformative solutions that unlock Africa's vast potential while maintaining global standards of excellence.",
     'about.who.years': 'Years',
     'about.who.partners': 'Partners',
     'about.vision.tagline': 'Our Vision',
@@ -226,7 +226,7 @@ const translations = {
     'about.business.title1': 'Collaboration &',
     'about.business.title2': 'Partnership',
     'about.business.p1': 'GPD Consulting operates on a diversified global business model that integrates Public/Private Partnerships (PPP), mining operations, international trade, and strategic investments. We engage with sovereign partners, global investors, and local stakeholders to deliver comprehensive solutions.',
-    'about.business.p2': 'Our operations span mining project financing and resource exploitation, international trade in food products, mining goods, and equipment, as well as large-scale infrastructure development—creating value across multiple sectors and geographies.',
+    'about.business.p2': 'Our operations span mining project financing and resource exploitation, international trade in food products, mining goods, and equipment, as well as large-scale infrastructure development-creating value across multiple sectors and geographies.',
     'about.business.objectives': 'Our Objectives',
     'about.objective.1': "Execute transformative projects for Africa's economic development",
     'about.objective.2': 'Facilitate infrastructure development through strategic PPPs',
@@ -349,7 +349,7 @@ const translations = {
     // Project items
     'proj.aviation.title': 'Modernizing Aviation Infrastructure',
     'proj.aviation.category': 'Aviation',
-    'proj.aviation.desc': 'A comprehensive upgrade program spanning terminals, airside systems, and passenger experience—designed for safety, capacity, and long-term resilience.',
+    'proj.aviation.desc': 'A comprehensive upgrade program spanning terminals, airside systems, and passenger experience-designed for safety, capacity, and long-term resilience.',
     'proj.aviation.investment': 'Investment',
     'proj.aviation.capacity': 'Capacity',
     'proj.aviation.timeline': 'Timeline',
@@ -465,7 +465,7 @@ const translations = {
     // Project Items
     'project.aviation.title': 'Modernisation de l\'Infrastructure Aéronautique',
     'project.aviation.category': 'Aviation',
-    'project.aviation.desc': 'Un programme complet de mise à niveau couvrant les terminaux, les systèmes aéroportuaires et l\'expérience des passagers—conçu pour la sécurité, la capacité et la résilience à long terme.',
+    'project.aviation.desc': 'Un programme complet de mise à niveau couvrant les terminaux, les systèmes aéroportuaires et l\'expérience des passagers-conçu pour la sécurité, la capacité et la résilience à long terme.',
     'project.housing.title': 'Développement de Logements Urbains',
     'project.housing.category': 'Logement',
     'project.housing.desc': 'Des programmes de logements abordables et des cadres urbains conçus pour créer des communautés durables et inclusives avec des équipements modernes.',
@@ -537,7 +537,7 @@ const translations = {
     'subject.other': 'Autre',
     
     // Footer
-    'footer.description': "Green Diamond Partnership Consulting Inc. — Une entreprise mondiale distinguée dédiée au développement économique durable de l'Afrique.",
+    'footer.description': "Green Diamond Partnership Consulting Inc. - Une entreprise mondiale distinguée dédiée au développement économique durable de l'Afrique.",
     'footer.quickLinks': 'Liens Rapides',
     'footer.services': 'Services',
     'footer.contact': 'Contact',
@@ -563,7 +563,7 @@ const translations = {
     'about.who.title1': 'Une Entreprise Mondiale avec',
     'about.who.title2': 'Expertise Africaine',
     'about.who.p1': "GPD Consulting est une entreprise mondiale distinguée opérant dans le monde entier avec une expertise approfondie et un focus spécialisé sur l'Afrique. Avec des bureaux et des partenariats couvrant l'Amérique, l'Europe et l'Afrique, nous apportons des capacités de classe mondiale pour stimuler le développement économique durable à travers le continent.",
-    'about.who.p2': "Nos services complets incluent le conseil stratégique, le financement de projets, les opérations minières, le commerce international et le développement des infrastructures—offrant des solutions transformatrices qui libèrent le potentiel immense de l'Afrique tout en maintenant des normes d'excellence mondiales.",
+    'about.who.p2': "Nos services complets incluent le conseil stratégique, le financement de projets, les opérations minières, le commerce international et le développement des infrastructures-offrant des solutions transformatrices qui libèrent le potentiel immense de l'Afrique tout en maintenant des normes d'excellence mondiales.",
     'about.who.years': 'Années',
     'about.who.partners': 'Partenaires',
     'about.vision.tagline': 'Notre Vision',
@@ -593,7 +593,7 @@ const translations = {
     'about.business.title1': 'Collaboration &',
     'about.business.title2': 'Partenariat',
     'about.business.p1': "GPD Consulting opère sur un modèle commercial mondial diversifié qui intègre les partenariats public-privé (PPP), les opérations minières, le commerce international et les investissements stratégiques. Nous collaborons avec des partenaires souverains, des investisseurs mondiaux et des parties prenantes locales pour offrir des solutions complètes.",
-    'about.business.p2': "Nos opérations couvrent le financement de projets miniers et l'exploitation des ressources, le commerce international de produits alimentaires, de biens miniers et d'équipements, ainsi que le développement des infrastructures à grande échelle—créant de la valeur à travers plusieurs secteurs et géographies.",
+    'about.business.p2': "Nos opérations couvrent le financement de projets miniers et l'exploitation des ressources, le commerce international de produits alimentaires, de biens miniers et d'équipements, ainsi que le développement des infrastructures à grande échelle-créant de la valeur à travers plusieurs secteurs et géographies.",
     'about.business.objectives': 'Nos Objectifs',
     'about.objective.1': "Exécuter des projets transformateurs pour le développement économique de l'Afrique",
     'about.objective.2': 'Faciliter le développement des infrastructures à travers des PPP stratégiques',
@@ -716,7 +716,7 @@ const translations = {
     // Project items
     'proj.aviation.title': "Modernisation de l'Infrastructure Aéronautique",
     'proj.aviation.category': 'Aviation',
-    'proj.aviation.desc': "Un programme complet de mise à niveau couvrant les terminaux, les systèmes aéroportuaires et l'expérience des passagers—conçu pour la sécurité, la capacité et la résilience à long terme.",
+    'proj.aviation.desc': "Un programme complet de mise à niveau couvrant les terminaux, les systèmes aéroportuaires et l'expérience des passagers-conçu pour la sécurité, la capacité et la résilience à long terme.",
     'proj.aviation.investment': 'Investissement',
     'proj.aviation.capacity': 'Capacité',
     'proj.aviation.timeline': 'Calendrier',

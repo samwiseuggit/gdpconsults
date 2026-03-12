@@ -61,13 +61,31 @@ export default function Navigation() {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <a href="https://linkedin.com/company/gpd-consulting" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-emerald-500 hover:text-white transition-all duration-300">
+            <a 
+              href="https://linkedin.com/company/gpd-consulting" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Follow GPD Consulting on LinkedIn"
+              className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-emerald-500 hover:text-white transition-all duration-300"
+            >
               <Linkedin className="w-3 h-3" />
             </a>
-            <a href="https://twitter.com/gpdconsulting" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-emerald-500 hover:text-white transition-all duration-300">
+            <a 
+              href="https://twitter.com/gpdconsulting" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Follow GPD Consulting on Twitter"
+              className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-emerald-500 hover:text-white transition-all duration-300"
+            >
               <Twitter className="w-3 h-3" />
             </a>
-            <a href="https://instagram.com/gpdconsulting" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-emerald-500 hover:text-white transition-all duration-300">
+            <a 
+              href="https://instagram.com/gpdconsulting" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              aria-label="Follow GPD Consulting on Instagram"
+              className="w-7 h-7 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-emerald-500 hover:text-white transition-all duration-300"
+            >
               <Instagram className="w-3 h-3" />
             </a>
           </div>
@@ -170,13 +188,13 @@ export default function Navigation() {
               </button>
             </div>
             <div className="flex flex-col p-6 gap-2">
-{/* Mobile Language Switcher */}
-          <div className="mb-6 pb-4 border-b border-gray-100">
-            <p className="text-xs text-gray-400 uppercase tracking-wide mb-3 px-4">Language</p>
-            <div className="px-4">
-              <LanguageSwitcher />
-            </div>
-          </div>
+              {/* Mobile Language Switcher */}
+              <div className="mb-6 pb-4 border-b border-gray-100">
+                <p className="text-xs text-gray-400 uppercase tracking-wide mb-3 px-4">Language</p>
+                <div className="px-4">
+                  <LanguageSwitcher />
+                </div>
+              </div>
               {navLinks.map((link, index) => (
                 <Link
                   key={link.key}

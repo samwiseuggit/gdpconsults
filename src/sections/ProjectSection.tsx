@@ -13,7 +13,7 @@ const projects = [
     titleKey: 'project.aviation.title',
     categoryKey: 'project.aviation.category',
     descKey: 'project.aviation.desc',
-    image: '/project_aviation_panorama.jpg',
+    image: '/project_aviation_panorama.webp',
     color: 'from-blue-500 to-blue-600'
   },
   {
@@ -21,7 +21,7 @@ const projects = [
     titleKey: 'project.housing.title',
     categoryKey: 'project.housing.category',
     descKey: 'project.housing.desc',
-    image: '/cap_housing_urban.jpg',
+    image: '/cap_housing_urban.webp',
     color: 'from-emerald-500 to-emerald-600'
   },
   {
@@ -29,7 +29,7 @@ const projects = [
     titleKey: 'project.energy.title',
     categoryKey: 'project.energy.category',
     descKey: 'project.energy.desc',
-    image: '/cap_energy_sustainability.jpg',
+    image: '/cap_energy_sustainability.webp',
     color: 'from-amber-500 to-amber-600'
   },
   {
@@ -37,7 +37,7 @@ const projects = [
     titleKey: 'project.agriculture.title',
     categoryKey: 'project.agriculture.category',
     descKey: 'project.agriculture.desc',
-    image: '/cap_agriculture_water.jpg',
+    image: '/cap_agriculture_water.webp',
     color: 'from-green-500 to-green-600'
   },
 ];
@@ -132,6 +132,10 @@ export default function ProjectSection() {
                   src={project.image}
                   alt={t(project.titleKey)}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  width="800"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent" />
                 

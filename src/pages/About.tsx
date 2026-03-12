@@ -1,7 +1,7 @@
 import { useRef, useLayoutEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Eye, Target, Heart, Shield, Users, Globe, Award, Lightbulb, CheckCircle2 } from 'lucide-react';
+import { Eye, Target, Heart, Shield, Users, Globe, Award, Lightbulb, CheckCircle2, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import SEO from '../components/SEO';
 
@@ -101,18 +101,23 @@ export default function About() {
 
   const currentSeo = seoData[language];
 
+  const breadcrumbs = [
+    { name: language === 'fr' ? 'Accueil' : 'Home', url: 'https://gdpconsults.ca/' },
+    { name: language === 'fr' ? 'À Propos' : 'About', url: 'https://gdpconsults.ca/about' },
+  ];
+
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
     name: language === 'fr' ? 'À Propos - GPD Consulting' : 'About Us - GPD Consulting',
     description: currentSeo.description,
-    url: 'https://gdpcconsulting.ca/about',
+    url: 'https://gdpconsults.ca/about',
     mainEntity: {
       '@type': 'Organization',
       name: 'GPD Consulting',
       description: 'A distinguished global enterprise with deep expertise and specialized focus on Africa',
-      url: 'https://gdpcconsulting.ca',
-      logo: 'https://gdpcconsulting.ca/logo-white-bg.svg',
+      url: 'https://gdpconsults.ca',
+      logo: 'https://gdpconsults.ca/logo-white-bg.svg',
       foundingDate: '2010',
       areaServed: {
         '@type': 'Continent',
@@ -127,8 +132,9 @@ export default function About() {
         title={currentSeo.title}
         description={currentSeo.description}
         keywords={currentSeo.keywords}
-        canonicalUrl="https://gdpcconsulting.ca/about"
+        canonicalUrl="https://gdpconsults.ca/about"
         structuredData={structuredData}
+        breadcrumbs={breadcrumbs}
       />
       <div ref={pageRef} className="bg-white">
       {/* Page Header */}
@@ -136,7 +142,7 @@ export default function About() {
         {/* Background */}
         <div className="absolute inset-0">
           <img 
-            src="/cap_strategic_advisory.jpg" 
+            src="/cap_strategic_advisory.webp" 
             alt="About us"
             className="w-full h-full object-cover opacity-20"
           />
@@ -168,9 +174,13 @@ export default function About() {
             <div className="animate-item relative">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-emerald-500/10">
                 <img 
-                  src="/cap_project_finance.jpg"
+                  src="/cap_project_finance.webp"
                   alt="Our business"
                   className="w-full aspect-[4/3] object-cover"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-emerald-400/30 rounded-3xl -z-10" />
@@ -360,7 +370,7 @@ export default function About() {
             <div className="animate-item relative">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-emerald-500/10">
                 <img 
-                  src="/cap_education_health.jpg"
+                  src="/cap_education_health.webp"
                   alt="Business model"
                   className="w-full aspect-[4/3] object-cover"
                 />
@@ -368,6 +378,30 @@ export default function About() {
               <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-emerald-400/30 rounded-3xl -z-10" />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Download Capability Statement CTA */}
+      <section className="animate-section py-24 px-4 md:px-8 bg-gray-950 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
+        
+        <div className="max-w-4xl mx-auto text-center relative">
+          <h2 className="font-heading text-4xl md:text-5xl font-bold text-white mb-6 animate-item">
+            {language === 'fr' ? 'En Savoir ' : 'Learn '}
+            <span className="gradient-text">{language === 'fr' ? 'Plus' : 'More'}</span>
+          </h2>
+          <p className="text-gray-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto animate-item">
+            {language === 'fr'
+              ? 'Telechargez notre document de capacites pour decouvrir comment nous pouvons vous aider a atteindre vos objectifs.'
+              : 'Download our capability statement to discover how we can help you achieve your goals.'}
+          </p>
+          <a 
+            href="mailto:info@gdpconsults.ca?subject=Capability%20Statement%20Request"
+            className="inline-flex items-center gap-3 bg-emerald-500 text-white px-10 py-5 rounded-full font-semibold hover:bg-emerald-400 transition-all duration-300 group animate-item"
+          >
+            <span>{language === 'fr' ? 'Telecharger le Document de Capacites' : 'Download Capability Statement'}</span>
+            <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </a>
         </div>
       </section>
     </div>

@@ -103,13 +103,31 @@ export default function Footer() {
                 {t('footer.description')}
               </p>
               <div className="flex items-center gap-3">
-                <a href="https://linkedin.com/company/gpd-consulting" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-emerald-500 hover:text-white transition-all duration-300">
+                <a 
+                  href="https://linkedin.com/company/gpd-consulting" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="Follow GPD Consulting on LinkedIn"
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-emerald-500 hover:text-white transition-all duration-300"
+                >
                   <Linkedin className="w-4 h-4" />
                 </a>
-                <a href="https://twitter.com/gpdconsulting" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-emerald-500 hover:text-white transition-all duration-300">
+                <a 
+                  href="https://twitter.com/gpdconsulting" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="Follow GPD Consulting on Twitter"
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-emerald-500 hover:text-white transition-all duration-300"
+                >
                   <Twitter className="w-4 h-4" />
                 </a>
-                <a href="https://instagram.com/gpdconsulting" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-emerald-500 hover:text-white transition-all duration-300">
+                <a 
+                  href="https://instagram.com/gpdconsulting" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="Follow GPD Consulting on Instagram"
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-emerald-500 hover:text-white transition-all duration-300"
+                >
                   <Instagram className="w-4 h-4" />
                 </a>
               </div>
@@ -198,10 +216,10 @@ export default function Footer() {
             © 2026 GPD Consulting. {t('footer.rights')}
           </div>
           <div className="flex items-center gap-6">
-            <Link to="/contact" className="text-gray-500 text-sm hover:text-emerald-400 transition-colors">
+            <Link to="/privacy-policy" className="text-gray-500 text-sm hover:text-emerald-400 transition-colors">
               {t('footer.privacy')}
             </Link>
-            <Link to="/contact" className="text-gray-500 text-sm hover:text-emerald-400 transition-colors">
+            <Link to="/terms-of-service" className="text-gray-500 text-sm hover:text-emerald-400 transition-colors">
               {t('footer.terms')}
             </Link>
           </div>

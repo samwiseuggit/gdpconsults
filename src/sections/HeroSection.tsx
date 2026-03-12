@@ -37,7 +37,7 @@ function AnimatedCounter({ end, suffix = '', duration = 2 }: { end: number; suff
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -112,9 +112,13 @@ export default function HeroSection() {
       <div className="absolute inset-0">
         <div className="hero-image absolute inset-0">
           <img 
-            src="/hero_airport_terminal.jpg" 
+            src="/hero_airport_terminal.webp" 
             alt="Modern infrastructure"
             className="w-full h-full object-cover"
+            width="1920"
+            height="1080"
+            fetchPriority="high"
+            decoding="async"
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-br from-gray-950/95 via-gray-950/80 to-emerald-950/60" />
@@ -162,14 +166,14 @@ export default function HeroSection() {
                 {t('hero.description')}
               </p>
 
-              {/* Buttons */}
+              {/* Buttons - Varied CTAs */}
               <div className="hero-buttons flex flex-col sm:flex-row gap-4">
                 <Link to="/contact#contact-form" className="btn-primary inline-flex items-center justify-center gap-3 group">
-                  <span>{t('hero.cta1')}</span>
+                  <span>{language === 'fr' ? 'Démarrer un Projet' : 'Start Your Project'}</span>
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </Link>
                 <Link to="/services" className="btn-outline inline-flex items-center justify-center gap-3 group">
-                  <span>{t('hero.cta2')}</span>
+                  <span>{language === 'fr' ? 'Explorer Nos Services' : 'Explore Our Services'}</span>
                   <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </Link>
               </div>
@@ -179,48 +183,52 @@ export default function HeroSection() {
             <div className="hero-stats hidden lg:block">
               <div className="relative">
                 {/* Main Stats Card */}
-                <div className="glass-dark rounded-3xl p-8 border border-white/10">
-                  <div className="grid grid-cols-2 gap-8">
-                    <div className="text-center p-6 bg-white/5 rounded-2xl">
-                      <div className="font-heading text-4xl font-bold text-emerald-400 mb-2">
-                        <AnimatedCounter end={15} suffix="+" />
+                <div className="glass-dark rounded-3xl p-6 border border-white/10">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="text-center p-4 bg-white/5 rounded-2xl" aria-label="15+ Years Experience">
+                      <div className="font-heading text-3xl font-bold text-emerald-400 mb-1">
+                        <span aria-hidden="true"><AnimatedCounter end={15} suffix="+" /></span>
                       </div>
-                      <div className="text-gray-400 text-sm">{t('hero.stats.years')}</div>
+                      <div className="text-gray-400 text-sm whitespace-nowrap">{t('hero.stats.years')}</div>
                     </div>
-                    <div className="text-center p-6 bg-white/5 rounded-2xl">
-                      <div className="font-heading text-4xl font-bold text-emerald-400 mb-2">
-                        <AnimatedCounter end={50} suffix="+" />
+                    <div className="text-center p-4 bg-white/5 rounded-2xl" aria-label="50+ Global Partners">
+                      <div className="font-heading text-3xl font-bold text-emerald-400 mb-1">
+                        <span aria-hidden="true"><AnimatedCounter end={50} suffix="+" /></span>
                       </div>
-                      <div className="text-gray-400 text-sm">{t('hero.stats.partners')}</div>
+                      <div className="text-gray-400 text-sm whitespace-nowrap">{t('hero.stats.partners')}</div>
                     </div>
-                    <div className="text-center p-6 bg-white/5 rounded-2xl">
-                      <div className="font-heading text-4xl font-bold text-emerald-400 mb-2">
-                        <AnimatedCounter end={3} />
+                    <div className="text-center p-4 bg-white/5 rounded-2xl" aria-label="3 Continents">
+                      <div className="font-heading text-3xl font-bold text-emerald-400 mb-1">
+                        <span aria-hidden="true"><AnimatedCounter end={3} /></span>
                       </div>
-                      <div className="text-gray-400 text-sm">{t('hero.stats.continents')}</div>
+                      <div className="text-gray-400 text-sm whitespace-nowrap">{t('hero.stats.continents')}</div>
                     </div>
-                    <div className="text-center p-6 bg-white/5 rounded-2xl">
-                      <div className="font-heading text-4xl font-bold text-emerald-400 mb-2">
-                        $<AnimatedCounter end={100} suffix="M+" />
+                    <div className="text-center p-4 bg-white/5 rounded-2xl" aria-label="$100M+ Project Value">
+                      <div className="font-heading text-3xl font-bold text-emerald-400 mb-1">
+                        <span aria-hidden="true">$<AnimatedCounter end={100} suffix="M+" /></span>
                       </div>
-                      <div className="text-gray-400 text-sm">{t('hero.stats.value')}</div>
+                      <div className="text-gray-400 text-sm whitespace-nowrap">{t('hero.stats.value')}</div>
                     </div>
                   </div>
                 </div>
 
                 {/* Floating Badge */}
-                <div 
-                  className="absolute -bottom-6 -left-6 glass-dark rounded-2xl px-6 py-4 border border-white/10 flex items-center gap-4"
+                <a 
+                  href="https://youtu.be/jmRDmi5NxD8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute -bottom-6 -left-6 glass-dark rounded-2xl px-6 py-4 border border-white/10 flex items-center gap-4 cursor-pointer hover:bg-white/10 transition-colors group"
                   style={{ transform: `translate(${mousePosition.x * 0.2}px, ${mousePosition.y * 0.2}px)` }}
+                  aria-label="Watch Our Story - 1:17 minute video on YouTube"
                 >
-                  <div className="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-emerald-500 rounded-xl flex items-center justify-center group-hover:bg-emerald-400 transition-colors">
                     <Play className="w-5 h-5 text-white ml-1" />
                   </div>
                   <div>
                     <div className="text-white font-semibold">{t('hero.video.title')}</div>
                     <div className="text-gray-400 text-sm">{t('hero.video.duration')}</div>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
           </div>
