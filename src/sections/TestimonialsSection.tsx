@@ -51,29 +51,27 @@ export default function TestimonialsSection() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.utils.toArray<HTMLElement>('.animate-section').forEach((section) => {
-        gsap.fromTo(section.querySelectorAll('.animate-item'),
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            stagger: 0.1,
-            duration: 0.7,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top 80%',
-            }
+      gsap.fromTo('.testimonial-card',
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.15,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: '.testimonials-grid',
+            start: 'top 85%',
           }
-        );
-      });
+        }
+      );
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 lg:py-32 px-4 md:px-8 bg-gray-50 relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 lg:py-32 px-4 md:px-8 bg-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-emerald-100/50 rounded-full blur-3xl" />
       <div className="absolute bottom-20 left-0 w-64 h-64 bg-emerald-50 rounded-full blur-3xl" />
@@ -87,18 +85,18 @@ export default function TestimonialsSection() {
               {language === 'fr' ? 'Temoignages' : 'Testimonials'}
             </span>
           </div>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-gray-900 animate-item">
+          <h2 className="font-heading text-4xl md:text-5xl font-bold text-gray-900">
             {language === 'fr' ? 'Ce Que Disent ' : 'What Our '}
             <span className="gradient-text">{language === 'fr' ? 'Nos Clients' : 'Clients Say'}</span>
           </h2>
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
+        <div className="testimonials-grid grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div 
               key={index}
-              className="animate-item bg-white rounded-3xl p-8 shadow-lg shadow-emerald-500/5 border border-gray-100 hover:border-emerald-100 transition-all duration-500 relative"
+              className="testimonial-card bg-white rounded-3xl p-8 shadow-lg shadow-emerald-500/5 border border-gray-100 hover:border-emerald-100 transition-all duration-500 relative"
             >
               <Quote className="absolute top-6 right-6 w-10 h-10 text-emerald-100" />
               
@@ -128,8 +126,6 @@ export default function TestimonialsSection() {
             </div>
           ))}
         </div>
-
-
       </div>
     </section>
   );
