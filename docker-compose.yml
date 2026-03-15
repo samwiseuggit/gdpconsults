@@ -11,8 +11,6 @@ services:
     environment:
       - NODE_ENV=production
     restart: unless-stopped
-    networks:
-      - gpd-network
 
   # Backend API for email handling
   api:
@@ -32,9 +30,3 @@ services:
       - TO_EMAIL=${TO_EMAIL:-info@gdpconsults.ca}
       - FRONTEND_URL=${FRONTEND_URL:-https://gdpconsults.ca}
     restart: unless-stopped
-    networks:
-      - gpd-network
-
-networks:
-  gpd-network:
-    driver: bridge
