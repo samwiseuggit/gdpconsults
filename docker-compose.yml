@@ -1,5 +1,4 @@
 version: '3.8'
-
 services:
   # Frontend - React app served by nginx
   frontend:
@@ -7,6 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: gpd-consulting-frontend
+    expose:
+      - "80"
     environment:
       - NODE_ENV=production
     restart: unless-stopped
@@ -19,6 +20,8 @@ services:
       context: ./api
       dockerfile: Dockerfile
     container_name: gpd-consulting-api
+    expose:
+      - "3000"
     environment:
       - NODE_ENV=production
       - SMTP_HOST=${SMTP_HOST:-}
